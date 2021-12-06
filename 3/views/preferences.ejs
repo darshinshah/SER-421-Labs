@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>SER421 MVC Example Set Preferences</title>
+</head>			
+
+<body>
+    <p>
+        Your current rendering preference is <em><%= preference %></em>
+    </p>
+    <p></p>
+    <form method='POST' action='/preferences'>
+        <input type="radio" name="preference" value="horizontal">
+        Horizontal
+        <br>
+        <input type="radio" name="preference" value="vertical">
+        Vertical
+        <br>
+        <input type="submit" name="submit" value="OK">
+    </form>
+</body>
+</html>

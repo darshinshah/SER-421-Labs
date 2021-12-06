@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SER 421 Lab 5</title>
+    </head>
+    <body>
+
+    <h1>SER 421 Lab 5</h1>
+    <p></p>
+    <form id="rangeform" method="GET" onsubmit="return getTournaments()">
+        <label for="lowerrange">Enter Lower Range: </label><br>
+        <input type="text" id="lowerrange" name="lowerrange"><br>
+        <label for="upperrange">Enter Upper Range: </label><br>
+        <input type="text" id="upperrange" name="upperrange"><br>
+        <input type="submit" value="Submit">
+    </form><br><br>
+    <table id="tournaments" border="1">
+        <tr>
+            <th>Tournament Name</th>
+            <th>Year</th>
+            <th>Award</th>
+            <th>Yardage</th>
+            <th>Par</th>
+        </tr>
+    </table>
+
+    <form id="newjsonform" method="POST" onsubmit="return createjson()">
+    <h1>Create Tournament Using JSON</h1>
+    <textarea id="jsontextarea" rows="20" cols="20">
+    </textarea><br><br>
+    <input type="submit" value="Create new Tournament">
+    </form>
+    <br><br>
+    <h1>Add an Unassigned Player </h1>
+
+    <form id="addplayer" method="POST" onsubmit="return addplayer()">
+        <label for="lname">Enter LastName: </label><br>
+        <input type="text" id="lname" name="lname"><br>
+        <label for="fname">Enter First Initial: </label><br>
+        <input type="text" id="fname" name="fname"><br>
+        <input type="submit" value="Submit">
+    </form>
+
+
+
+
+    <script>
+        // var tournament_list
+        fetch('http://localhost:8000/Tournament')
+        .then(response => response.json())
+        .then(data=>{
+            var table=document.getElementById("tournaments")
+            for(const [key, value] of Object.entries(data)){
+                console.log(value)
+                var rowCount = table.rows.length
+                var row = table.insertRow(rowCount)
+                var cell1=row.insertCell(0)
+                var cell2=row.insertCell(1)
+                var cell3=row.insertCell(2)
+                var cell4=row.insertCell(3)
+                var cell5=row.insertCell(4)
+                cell1.innerHTML=value["name"]
+                cell2.innerHTML=value["year"]
+                cell3.innerHTML=value["award"]
+                cell4.innerHTML=value["yardage"]
+                cell5.innerHTML=value["par"]
+            }
+        })
+
+        function addplayer(){
+            var lname=document.getElementById("lname").value
+            var fname=document.getElementById("fname").value
+            
+            const data = new URLSearchParams();
+            data.append('lastName',lname)
+            data.append('firstInitial',fname)
+
+            let formData = new FormData();
+            formData.append('lastName',lname)
+            formData.append('firstInitial',fname)
+            console.log(fname,lname)
+            fetch('http://localhost:8000/Player',{
+                method:"POST",
+                // headers:{'Content-Type': 'application/x-www-form-urlencoded'},
+                body:data
+            })
+            .then(response=>response.text())
+            .then(data=>{
+                console.log("Heelloo",data)
+            })
+            return false
+        }
+
+        function createjson(){
+            var jsonData=document.getElementById("jsontextarea")
+            var json=JSON.parse(jsonData.value)
+
+            fetch('http://localhost:8000/Tournament',{
+                method:"POST",
+                headers: {'Content-Type':'application/json'},
+                body:JSON.stringify(json)
+            })
+            .then(response=>response.text())
+            .then(data=>{
+                console.log("HELLO",data)
+            })
+            return false
+        }
+
+        function getTournaments(){
+            var low=document.getElementById("lowerrange").value
+            var up=document.getElementById("upperrange").value
+            
+            fetch('http://localhost:8000/Tournament?lowerrange='+low+"&upperrange="+up,{
+                method:"GET"
+            })
+            .then(response => response.json())
+            .then(data=>{
+            console.log(data)
+            var table=document.getElementById("tournaments")
+            var rows=table.rows
+            var i=rows.length
+            while(--i){
+                rows[i].parentNode.removeChild(rows[i]);
+            }
+            for(const [key, value] of Object.entries(data)){
+                console.log(value)
+                var rowCount = table.rows.length
+                var row = table.insertRow(rowCount)
+                var cell1=row.insertCell(0)
+                var cell2=row.insertCell(1)
+                var cell3=row.insertCell(2)
+                var cell4=row.insertCell(3)
+                var cell5=row.insertCell(4)
+                cell1.innerHTML=value["name"]
+                cell2.innerHTML=value["year"]
+                cell3.innerHTML=value["award"]
+                cell4.innerHTML=value["yardage"]
+                cell5.innerHTML=value["par"]
+            }
+        })
+        return false
+
+        }
+    </script>
+
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Survey</title>
+</head>
+<body>
+    <p>
+        Survey page: <%= page %> for user <%= username %>
+        <br>
+        <br>
+        <%= question %>
+    </p>
+    <p>
+        <a href='/preferences'>Set your rendering preferences</a>
+    </p>
+    <p></p>
+    <form method='POST'>
+        <% for(var i=0; i < choices.length; i++) { %>
+            <input type="radio" name="choice" value= <%= i %> <%= i==selectedChoice ? "checked" : "" %>> <%= choices[i].choice %>
+            <% if (preference == "vertical") { %> <br> <% } %>
+        <% } %>
+        <% if (page > 1) { %>
+            <input type='submit' name='submit' value='previous' />
+        <% } %>
+        <input type='submit' name='submit' value='next' />
+    </form>
+</body>
+</html>

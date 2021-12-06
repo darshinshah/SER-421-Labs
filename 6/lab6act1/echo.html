@@ -1,0 +1,32 @@
+<html>
+    <title>
+        ECHO API EXAMPLE
+    </title>
+    <head>
+        <h1>Echo API Example</h1>
+    </head>
+    <body>
+        <form>
+            <p>Enter Your Name : </p>
+            <input type="text" name="name" id="name">
+            <input type="button" name="submit" value="submit" onclick="return echo()">
+        </form>
+        <p id="displayarea"></p>
+    <script>
+        function echo(){
+            fetch("https://uzvey6qk8b.execute-api.us-west-2.amazonaws.com/echo-api-test",{
+                method:"POST",
+                body:JSON.stringify({"name":document.getElementById("name").value}),
+                headers:{
+                    'Content-Type':'application/json'
+                }
+            })
+            .then(response=>response.json())
+            .then(data=>{
+                document.getElementById("displayarea").innerHTML=JSON.parse(data.body).message
+            })
+            return false
+        }
+    </script>
+    </body>
+</html>

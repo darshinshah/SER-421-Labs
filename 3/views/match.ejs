@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SER421 MVC Ex Survey Matches</title>
+</head>
+<body>
+    <p>
+        Best survey matches for <%= username %> best-to-worst:
+    </p>
+    <% if (users == undefined || users==[]) {%>
+        <p>There were no matches for <%= username %>.</p>
+    <% } else{ %>
+        <ol>
+            <% for (let i of users) { %>
+            <li>User: <%= i[0] %> matched <%= i[1] %> answers</li><% } %>
+        </ol>
+    <% } %>
+    <p></p>
+</body>
+</html>

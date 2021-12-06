@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "cdadf115-9fe5-4244-80b7-2bd9b77493f4",
+		"name": "Assignment1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cache-Control",
+						"value": "max-age=0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://swent1linux.asu.edu/ser421lab1/index.html",
+					"protocol": "https",
+					"host": [
+						"swent1linux",
+						"asu",
+						"edu"
+					],
+					"path": [
+						"ser421lab1",
+						"index.html"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "dshah32",
+							"type": "text"
+						},
+						{
+							"key": "brand",
+							"value": "Coke",
+							"type": "text"
+						},
+						{
+							"key": "quantity",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "aisle",
+							"value": "27",
+							"type": "text"
+						},
+						{
+							"key": "custom",
+							"value": "darshin",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://swent1linux.asu.edu/ser421lab1/groceries",
+					"protocol": "https",
+					"host": [
+						"swent1linux",
+						"asu",
+						"edu"
+					],
+					"path": [
+						"ser421lab1",
+						"groceries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"dshah321\",\r\n    \"brand\":\"Coke\",\r\n    \"quantity\":\"1\",\r\n    \"aisle\":\"27\",\r\n    \"custom\":\"darshin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://swent1linux.asu.edu/ser421lab1/groceries",
+					"protocol": "https",
+					"host": [
+						"swent1linux",
+						"asu",
+						"edu"
+					],
+					"path": [
+						"ser421lab1",
+						"groceries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/html",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://swent1linux.asu.edu/ser421lab1/my_groceries",
+					"protocol": "https",
+					"host": [
+						"swent1linux",
+						"asu",
+						"edu"
+					],
+					"path": [
+						"ser421lab1",
+						"my_groceries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://swent1linux.asu.edu/ser421lab1/my_groceries?aisle=3",
+					"protocol": "https",
+					"host": [
+						"swent1linux",
+						"asu",
+						"edu"
+					],
+					"path": [
+						"ser421lab1",
+						"my_groceries"
+					],
+					"query": [
+						{
+							"key": "aisle",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://swent1linux.asu.edu/ser421lab1/my_groceries?aisle=3&custom=veg",
+					"protocol": "https",
+					"host": [
+						"swent1linux",
+						"asu",
+						"edu"
+					],
+					"path": [
+						"ser421lab1",
+						"my_groceries"
+					],
+					"query": [
+						{
+							"key": "aisle",
+							"value": "3"
+						},
+						{
+							"key": "custom",
+							"value": "veg"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true,
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "text"
+					},
+					{
+						"key": "Connection",
+						"value": "close",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://swent1linux.asu.edu/ser421lab1/my_groceries?aisle=3&custom1=veg",
+					"protocol": "https",
+					"host": [
+						"swent1linux",
+						"asu",
+						"edu"
+					],
+					"path": [
+						"ser421lab1",
+						"my_groceries"
+					],
+					"query": [
+						{
+							"key": "aisle",
+							"value": "3"
+						},
+						{
+							"key": "custom1",
+							"value": "veg"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
